@@ -1,6 +1,7 @@
+// import {investment} from '../util/investment.js';
 
-
-export default function Result({ investment, annualInvestment, expectedReturn, duration }) {
+export default function Result() {
+    // const annualData = investment.calculateAnnualData(annualInvestment, expectedReturn, duration);
     return (
         <table id="result">
             <thead>
@@ -13,9 +14,8 @@ export default function Result({ investment, annualInvestment, expectedReturn, d
                 </tr>
             </thead>
             <tbody>
-                {/* Render the calculated results here */}
+                {/* <tr>{annualData}</tr> */}
             </tbody>
         </table>
-
     )
-}
+};
