@@ -1,13 +1,13 @@
 import {calculateInvestmentResults, formatter} from '../util/investment.js';
 
 export default function Result({input}) {
-    const initialInvestment = +input["investment-amount"]; // Convert to number
+    const initialInvestment = +input.investmentAmount; 
     
     const annualData = calculateInvestmentResults({
         initialInvestment: initialInvestment,
-        annualInvestment: +input["annual-investment"], 
-        expectedReturn: +input["expected-return"],
-        duration: +input["duration"]
+        annualInvestment: +input.annualInvestment, 
+        expectedReturn: +input.expectedReturn,
+        duration: +input.duration
     });
     
     return (

@@ -5,23 +5,27 @@ import { useState } from 'react';
 
 function App() {
   const [inputValues, setInputValues] = useState({
-          "investment-amount": 10000,
-          "annual-investment": 1200,
-          "expected-return": 5,
-          "duration": 10
-      });
+      investmentAmount: 10000,
+      annualInvestment: 1200,
+      expectedReturn: 5,
+      duration: 10,
+  });
+
   
-      function handleInputChange(id, newValue) {
-          setInputValues((prevValues) => ({
-              ...prevValues,
-              [id]: newValue
-          }));
-      }
+  function handleInputChange(id, newValue) {
+      setInputValues((prevValues) => ({
+          ...prevValues,
+          [id]: newValue
+      }));
+  }
+
+  const isInputValid = inputValues.duration >= 1
   return (
       <>
         <Header />
         <UserInput inputValues = {inputValues} handleInputChange = {handleInputChange}/>
-        <Result input = {inputValues}/>
+        
+        {isInputValid ? <Result input = {inputValues}/> : <p>"Please enter a duration larger than 0</p>}
       </>
   );
 }
