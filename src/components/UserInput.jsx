@@ -1,22 +1,6 @@
 import InputField from "./InputField.jsx";
-import { useState } from "react";
 
-export default function UserInput() {
-
-    const [inputValues, setInputValues] = useState({
-        "investment-amount": 10000,
-        "annual-investment": 1200,
-        "expected-return": 5,
-        "duration": 10
-    });
-
-    function handleInputChange(id, newValue) {
-        setInputValues((prevValues) => ({
-            ...prevValues,
-            [id]: newValue
-        }));
-    }
-
+export default function UserInput({inputValues, handleInputChange}) {
 
     return (
         <section id="user-input">

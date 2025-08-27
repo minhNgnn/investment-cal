@@ -1,11 +1,13 @@
 import {calculateInvestmentResults, formatter} from '../util/investment.js';
 
 export default function Result({input}) {
+    const initialInvestment = +input["investment-amount"]; // Convert to number
+    
     const annualData = calculateInvestmentResults({
-        initialInvestment: input["investment-amount"],
-        annualInvestment: input["annual-investment"], 
-        expectedReturn: input["expected-return"],
-        duration: input["duration"]
+        initialInvestment: initialInvestment,
+        annualInvestment: +input["annual-investment"], 
+        expectedReturn: +input["expected-return"],
+        duration: +input["duration"]
     });
     
     return (
@@ -21,21 +23,19 @@ export default function Result({input}) {
             </thead>
             <tbody>
                 {annualData.map(data => {
-                    const totalInterst = data.valueEndOfYear - data.annualInvestment * data.year - input["investment-amount"]
-                    const totalAmountInvested = data.valueEndOfYear - totalInterst
+                    const totalInterest = data.valueEndOfYear - (initialInvestment + data.annualInvestment * data.year);
+                    const totalAmountInvested = initialInvestment + (data.annualInvestment * data.year);
+                    
                     return (
                         <tr key={data.year}>
                             <td>{data.year}</td>
                             <td>{formatter.format(data.valueEndOfYear)}</td>
                             <td>{formatter.format(data.interest)}</td>
-                            <td>{formatter.format(totalInterst)}</td>
+                            <td>{formatter.format(totalInterest)}</td>
                             <td>{formatter.format(totalAmountInvested)}</td>
                         </tr>
                     )
-                }
-                    
-                )}
-
+                })}
             </tbody>
         </table>
     )

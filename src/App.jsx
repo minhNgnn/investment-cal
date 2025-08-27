@@ -4,17 +4,24 @@ import Result from './components/Result.jsx';
 import { useState } from 'react';
 
 function App() {
-  const input = {
-        "investment-amount": 10000,
-        "annual-investment": 1200,
-        "expected-return": 5,
-        "duration": 10
-    }
+  const [inputValues, setInputValues] = useState({
+          "investment-amount": 10000,
+          "annual-investment": 1200,
+          "expected-return": 5,
+          "duration": 10
+      });
+  
+      function handleInputChange(id, newValue) {
+          setInputValues((prevValues) => ({
+              ...prevValues,
+              [id]: newValue
+          }));
+      }
   return (
       <>
         <Header />
-        <UserInput />
-        <Result input = {input}/>
+        <UserInput inputValues = {inputValues} handleInputChange = {handleInputChange}/>
+        <Result input = {inputValues}/>
       </>
   );
 }
