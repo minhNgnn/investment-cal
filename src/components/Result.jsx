@@ -8,8 +8,6 @@ export default function Result({input}) {
         duration: input["duration"]
     });
     
-    console.log(annualData);
-    // console.log("Test")
     return (
         <table id="result">
             <thead>
@@ -22,16 +20,20 @@ export default function Result({input}) {
                 </tr>
             </thead>
             <tbody>
-                {annualData.map(data => 
-                    (
-                        <tr>
+                {annualData.map(data => {
+                    const totalInterst = data.valueEndOfYear - data.annualInvestment * data.year - input["investment-amount"]
+                    const totalAmountInvested = data.valueEndOfYear - totalInterst
+                    return (
+                        <tr key={data.year}>
                             <td>{data.year}</td>
                             <td>{formatter.format(data.valueEndOfYear)}</td>
                             <td>{formatter.format(data.interest)}</td>
-                            <td>{formatter.format(data.interest)}</td>
-                            <td>{formatter.format(data.annualInvestment)}</td>
+                            <td>{formatter.format(totalInterst)}</td>
+                            <td>{formatter.format(totalAmountInvested)}</td>
                         </tr>
                     )
+                }
+                    
                 )}
 
             </tbody>
