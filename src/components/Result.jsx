@@ -25,10 +25,11 @@ export default function Result({input}) {
                 {annualData.map(data => 
                     (
                         <tr>
-                            <th>{data.year}</th>
-                            <th>{data.interest}</th>
-                            <th>{data.valueEndOfYear}</th>
-                            <th>{data.annualInvestment}</th>
+                            <td>{data.year}</td>
+                            <td>{formatter.format(data.valueEndOfYear)}</td>
+                            <td>{formatter.format(data.interest)}</td>
+                            <td>{formatter.format(data.interest)}</td>
+                            <td>{formatter.format(data.annualInvestment)}</td>
                         </tr>
                     )
                 )}
