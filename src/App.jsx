@@ -4,12 +4,17 @@ import Result from './components/Result.jsx';
 import { useState } from 'react';
 
 function App() {
-
+  const input = {
+        "investment-amount": 10000,
+        "annual-investment": 1200,
+        "expected-return": 5,
+        "duration": 10
+    }
   return (
       <>
         <Header />
         <UserInput />
-        <Result />
+        <Result input = {input}/>
       </>
   );
 }
